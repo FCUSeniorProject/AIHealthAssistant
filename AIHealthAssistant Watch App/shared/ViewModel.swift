@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import AVKit
+import AVFoundation
 
 final class ViewModel: ObservableObject {
     @Published var messages: [MessageRow] = []
@@ -8,6 +9,9 @@ final class ViewModel: ObservableObject {
     @Published var isInteractingWithChatGPT = false
     let userAvatar = "profile"
     let botAvatar = "openai"
+    private let synthesizer = AVSpeechSynthesizer()
+    
+    @AppStorage("isSpeechEnabled") private var isSpeechEnabled = false
     
     private let api: ChatGPTAPI
         init(api: ChatGPTAPI) {
@@ -60,6 +64,9 @@ final class ViewModel: ObservableObject {
                     messageRow.responseText = streamText.trimmingCharacters(in: .whitespacesAndNewlines)
                     self.messages[self.messages.count - 1] = messageRow
                 }
+                if isSpeechEnabled{
+                    speak(streamText.trimmingCharacters(in: .whitespacesAndNewlines))
+                }
             } catch {
                 messageRow.responseError = error.localizedDescription
             }
@@ -67,5 +74,12 @@ final class ViewModel: ObservableObject {
             messageRow.isInterctingWithChatGPT = false
             self.messages[self.messages.count - 1] = messageRow
             isInteractingWithChatGPT = false
+        }
+    
+        private func speak(_ text: String) {
+            let utterance = AVSpeechUtterance(string: text)
+            utterance.voice = AVSpeechSynthesisVoice(language: "zh-TW") // 台灣中文
+            utterance.rate = AVSpeechUtteranceDefaultSpeechRate
+            synthesizer.speak(utterance)
         }
 }

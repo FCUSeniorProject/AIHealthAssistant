@@ -12,26 +12,28 @@ struct menuView: View {
     @State private var isUnlockGPT4Presented = false
     @State private var isThemePresented = false
     @State private var isAboutPresented = false
-    @State private var isSpeechEnabled = false
+    @AppStorage("isSpeechEnabled") private var isSpeechEnabled = false
     @State private var volume: Double = 0.5
     @State private var language: String = "English"
+    @State private var wiggleTrigger = false
     
     var body: some View {
         VStack {
             ScrollView {
                 VStack(spacing: 50) {
                     // Unlock GPT-4
-                    HStack(spacing: 25) {
+                    HStack() {
                         VStack(alignment: .leading, spacing: 10) {
                             Image(systemName: "lock.fill")
-                                .foregroundColor(.white)
-                            Text("Unlock GPT-4o")
+                                .foregroundColor(themeColor)
+                            Text(LocalizedStringKey("Unlock GPT"))
                                 .font(.headline)
                                 .foregroundColor(.white)
                         }
                         Spacer()
                     }
-                    .padding()
+                    .frame(maxWidth:.infinity)
+                    .padding(10)
                     .background(RoundedRectangle(cornerRadius: 10)
                                     .fill(Color("CustomColor"))
                                     .frame(height: 100))
@@ -44,17 +46,18 @@ struct menuView: View {
                     }
                     
                     // Theme
-                    HStack(spacing: 25) {
+                    HStack() {
                         VStack(alignment: .leading, spacing: 10) {
                             Image(systemName: "moon.fill")
-                                .foregroundColor(.white)
-                            Text("Theme")
+                                .foregroundColor(themeColor)
+                            Text(LocalizedStringKey("Theme"))
                                 .font(.headline)
                                 .foregroundColor(.white)
                         }
                         Spacer()
                     }
-                    .padding()
+                    .frame(maxWidth:.infinity)
+                    .padding(10)
                     .background(RoundedRectangle(cornerRadius: 10)
                                     .fill(Color("CustomColor"))
                                     .frame(height: 100))
@@ -69,33 +72,43 @@ struct menuView: View {
                     // Enable Speech
                     HStack(spacing: 25) {
                         VStack(alignment: .leading, spacing: 10) {
-                            Image(systemName: "ear.fill")
-                                .foregroundColor(.white)
-                            Text("Enable Speech")
+                            Image(systemName: "waveform")
+                                .resizable()
+                                .frame(width: 18, height: 18)
+                                .foregroundColor(themeColor)
+                                .symbolEffect(.wiggle, value: wiggleTrigger)
+                            Text(LocalizedStringKey("Speech"))
                                 .font(.headline)
                                 .foregroundColor(.white)
                         }
+                        Spacer()
                         Toggle("", isOn: $isSpeechEnabled)
-                            .labelsHidden() // 隱藏標籤，只顯示開關
+                            .labelsHidden()
                             .foregroundColor(themeColor)
+                            .onChange(of:isSpeechEnabled){
+                                wiggleTrigger.toggle()
+                            }
                     }
-                    .padding()
-                    .background(RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color("CustomColor"))
-                                    .frame(height: 100))
-                    
+                    .frame(maxWidth:.infinity)
+                    .padding(10)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                        .fill(Color("CustomColor"))
+                        .frame(height:100)
+                    )
                     // Volume
-                    HStack(spacing: 25) {
+                    HStack() {
                         VStack(alignment: .leading, spacing: 10) {
                             Image(systemName: "speaker.3.fill")
-                                .foregroundColor(.white)
-                            Text("Volume")
+                                .foregroundColor(themeColor)
+                            Text(LocalizedStringKey("Vol"))
                                 .font(.headline)
                                 .foregroundColor(.white)
                         }
                         Spacer()
                     }
                     .padding()
+                    .frame(maxWidth:.infinity)
                     .background(RoundedRectangle(cornerRadius: 10)
                                     .fill(Color("CustomColor"))
                                     .frame(height: 100))
@@ -103,37 +116,19 @@ struct menuView: View {
                         // Handle volume change
                     }
                     
-                    // Language
-                    HStack(spacing: 25) {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Image(systemName: "globe")
-                                .foregroundColor(.white)
-                            Text("Language")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                        }
-                        Spacer()
-                    }
-                    .padding()
-                    .background(RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color("CustomColor"))
-                                    .frame(height: 100))
-                    .onTapGesture {
-                        // Handle language change
-                    }
-                    
                     // About This App
-                    HStack(spacing: 25) {
+                    HStack() {
                         VStack(alignment: .leading, spacing: 10) {
                             Image(systemName: "info.circle")
-                                .foregroundColor(.white)
-                            Text("About This App")
+                                .foregroundColor(themeColor)
+                            Text(LocalizedStringKey("About"))
                                 .font(.headline)
                                 .foregroundColor(.white)
                         }
                         Spacer()
                     }
-                    .padding()
+                    .padding(10)
+                    .frame(maxWidth:.infinity)
                     .background(RoundedRectangle(cornerRadius: 10)
                                     .fill(Color("CustomColor"))
                                     .frame(height: 100))

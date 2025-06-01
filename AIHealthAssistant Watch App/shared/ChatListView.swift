@@ -18,7 +18,7 @@ struct ChatListView: View {
                             }
                         }
                     }
-                    .onChange(of: modelData.messages.last?.responseText) { _ in
+                    .onChange(of: modelData.messages.last?.responseText) {
                         scrollToBottom(proxy: proxy)
                     }
                 }
@@ -41,7 +41,7 @@ struct ChatListView: View {
                 size: CGSize(width: 40, height: 40)
             )
 
-            TextField("請輸入訊息...", text: $modelData.inputMessage)
+            TextField(LocalizedStringKey("enterPrompt"), text: $modelData.inputMessage)
                 .font(.headline)
                 .disabled(modelData.isInteractingWithChatGPT)
                 .onTapGesture {

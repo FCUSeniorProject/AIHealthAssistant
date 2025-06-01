@@ -32,7 +32,7 @@ struct ContentView: View {
                     Spacer()
 
                     NavigationLink(destination: ChatView()) {
-                        Text("Ask me any health questions")
+                        Text(LocalizedStringKey("Hint"))
                             .font(.headline)
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)

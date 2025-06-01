@@ -45,7 +45,7 @@ class ChatGPTAPI {
     init(
         apiKey: String,
         model: String = "gpt-3.5-turbo",
-        systemPrompt: String = "You are a helpful assistant",
+        systemPrompt: String = "You are a health assistant.Your target audience is eldery persons. Please explain the content to them as simply as possible. Any questions not related to health will be rejected.",
         temperature: Double = 1
     ) {
         self.apiKey = apiKey

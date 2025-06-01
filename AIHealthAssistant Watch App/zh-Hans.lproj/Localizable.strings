@@ -1,0 +1,20 @@
+//
+//  Localizable.strings
+//  AIHealthAssistant
+//
+//  Created by 台南中華東 on 2025/6/1.
+//
+
+"Unlock GPT" = "解锁GPT-4o";
+
+"Theme" = "主题";
+
+"Speech" = "开启语音输出";
+
+"Vol" = "音量";
+
+"About" = "关于";
+
+"Hint" = "询问任何健康问题";
+
+"enterPrompt" = "请输入信息...";

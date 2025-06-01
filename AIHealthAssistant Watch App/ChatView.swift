@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ChatView: View {
-    @StateObject var modelData = ViewModel(api: ChatGPTAPI(apiKey: "api"))
+    @StateObject var modelData = ViewModel(api: ChatGPTAPI(apiKey: "Your_API_Key"))
 
     @Environment(\.presentationMode) var presentationMode
     
