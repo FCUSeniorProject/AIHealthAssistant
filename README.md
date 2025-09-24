@@ -42,7 +42,7 @@ AIHealthAssistant（VitaBot）是一款針對 Apple Watch 平臺設計的智能�
 ## 專案展示與連結
 
 - GitHub 原始碼：`https://github.com/FCUSeniorProject/AIHealthAssistant`  
-- Demo / 試用影片：`[https://github.com/FCUSeniorProject/AIHealthAssistant](https://drive.google.com/drive/u/0/folders/1WrfBPLi61atzNPozm9fxAsLRNl6_uXfF)`   
+- Demo / 試用影片：`https://drive.google.com/drive/u/0/folders/1WrfBPLi61atzNPozm9fxAsLRNl6_uXfF`   
 
 ---
 
@@ -56,6 +56,5 @@ AIHealthAssistant（VitaBot）是一款針對 Apple Watch 平臺設計的智能�
 ---
 
 ## 團隊與貢獻者
-
 （列出專案成員、貢獻者、聯絡方式等）
-- [Shiro](https://github.com/xWht1e0122) – LLM/STT/TTS Integrration、Frontend
+- [Shiro](https://github.com/xWh1te0122) – LLM/STT/TTS Integrration、Frontend
